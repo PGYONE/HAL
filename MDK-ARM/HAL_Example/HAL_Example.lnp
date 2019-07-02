@@ -1,0 +1,25 @@
+--cpu=Cortex-M4.fp
+"hal_example\stm32f4xx_hal_tim.o"
+"hal_example\stm32f4xx_hal_dma.o"
+"hal_example\stm32f4xx_hal_gpio.o"
+"hal_example\stm32f4xx_hal_flash_ex.o"
+"hal_example\stm32f4xx_hal.o"
+"hal_example\stm32f4xx_hal_flash_ramfunc.o"
+"hal_example\stm32f4xx_hal_tim_ex.o"
+"hal_example\stm32f4xx_hal_cortex.o"
+"hal_example\stm32f4xx_hal_flash.o"
+"hal_example\stm32f4xx_hal_pwr.o"
+"hal_example\stm32f4xx_hal_pwr_ex.o"
+"hal_example\stm32f4xx_hal_rcc.o"
+"hal_example\stm32f4xx_hal_dma_ex.o"
+"hal_example\stm32f4xx_hal_rcc_ex.o"
+"hal_example\gpio.o"
+"hal_example\stm32f4xx_hal_msp.o"
+"hal_example\main.o"
+"hal_example\stm32f4xx_it.o"
+"hal_example\system_stm32f4xx.o"
+"hal_example\startup_stm32f407xx.o"
+--library_type=microlib --strict --scatter "HAL_Example\HAL_Example.sct"
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "HAL_Example.map" -o HAL_Example\HAL_Example.axf
