@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=E:/单片机/1.框架代码/3.HAL/HAL_Example/Inc
+HeaderPath=E:/单片机/1.框架代码/3.HAL/HAL_Example/HAL/Inc
 HeaderFiles=gpio.h;stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=E:/单片机/1.框架代码/3.HAL/HAL_Example/Src
+SourcePath=E:/单片机/1.框架代码/3.HAL/HAL_Example/HAL/Src
 SourceFiles=gpio.c;stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

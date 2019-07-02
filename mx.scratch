@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>E:\&#21333;&#29255;&#26426;\1.&#26694;&#26550;&#20195;&#30721;\3.HAL\HAL_Example\\HAL_Example</ProjectName>
+<ProjectName>E:\&#21333;&#29255;&#26426;\1.&#26694;&#26550;&#20195;&#30721;\3.HAL\HAL_Example\HAL\\HAL_Example</ProjectName>
 <CMSIS>..\Drivers\CMSIS</CMSIS>
 <HAL_Driver>C:\Users\Administrator\STM32Cube\Repository\STM32Cube_FW_F4_V1.18.0\Drivers\CMSIS</HAL_Driver>
 
@@ -35,7 +35,7 @@
     <usedDebug>true</usedDebug>
     	<debugprobe></debugprobe>
     <optimization></optimization>
-    <icfloc>1</icfloc>
+    <icfloc>0</icfloc>
     <Adefines>
         <define></define>
     </Adefines>   

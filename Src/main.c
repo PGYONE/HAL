@@ -98,11 +98,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-  /* USER CODE END WHILE */
-   HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_9|GPIO_PIN_10);
-		HAL_Delay(1000);
-  /* USER CODE BEGIN 3 */
-   
+   if(HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_2)==0)
+	 {
+			HAL_Delay(10);
+		 if(HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_2)==0)
+			 HAL_GPIO_TogglePin(GPIOF,GPIO_PIN_9);
+		 while(HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_2)==0);
+	 }
   }
   /* USER CODE END 3 */
 
