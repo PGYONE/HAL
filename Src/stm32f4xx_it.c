@@ -182,6 +182,9 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f4xx.s).                    */
 /******************************************************************************/
+/**
+* @brief This function handles USART1 global interrupt.
+*/
 
 /* USER CODE BEGIN 1 */
 

@@ -38,9 +38,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "string.h"
 #include "stm32f4xx_hal.h"
 #include "gpio.h"
-
+#include "usart.h"
+#include "dma.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -89,25 +91,32 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-
+  MX_DMA_Init();
   /* USER CODE BEGIN 2 */
-
+  MX_USART1_UART_Init();
+	
+ 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-   if(HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_2)==0)
-	 {
-			HAL_Delay(10);
-		 if(HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_2)==0)
-			 HAL_GPIO_TogglePin(GPIOF,GPIO_PIN_9);
-		 while(HAL_GPIO_ReadPin(GPIOE,GPIO_PIN_2)==0);
-	 }
+		if(recv_end_flag == 1)   //接收完成标志
+    {
+        //if(rx_len==6)
+				{
+			HAL_UART_Transmit(&huart1,aRxBuffer, rx_len,200);
+					rx_len = 0;//清除计数
+        recv_end_flag = 0;//清除接收结束标志位
+			  HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_9);
+        memset(aRxBuffer,0,sizeof(aRxBuffer));
+				}
+        
+    }   
+   
   }
   /* USER CODE END 3 */
-
 }
 
 /** System Clock Configuration

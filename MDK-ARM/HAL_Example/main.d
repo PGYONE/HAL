@@ -1,5 +1,6 @@
 hal_example\main.o: ../Src/main.c
 hal_example\main.o: ../Inc/main.h
+hal_example\main.o: D:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 hal_example\main.o: ../Inc/stm32f4xx_hal_conf.h
 hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
@@ -27,4 +28,7 @@ hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+hal_example\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 hal_example\main.o: ../Inc/gpio.h
+hal_example\main.o: ../Inc/usart.h
+hal_example\main.o: ../Inc/dma.h
