@@ -43,6 +43,7 @@
 #include "gpio.h"
 #include "usart.h"
 #include "dma.h"
+#include "tim.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -53,7 +54,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE END PV */
-
+extern TIM_HandleTypeDef htim6;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
@@ -94,8 +95,8 @@ int main(void)
   MX_DMA_Init();
   /* USER CODE BEGIN 2 */
   MX_USART1_UART_Init();
-	
- 
+	MX_TIM6_Init();
+  HAL_TIM_Base_Start_IT(&htim6);
   /* USER CODE END 2 */
 
   /* Infinite loop */

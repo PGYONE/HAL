@@ -35,6 +35,8 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_it.h"
 
+
+extern TIM_HandleTypeDef htim6;
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -175,7 +177,10 @@ void SysTick_Handler(void)
 
   /* USER CODE END SysTick_IRQn 1 */
 }
-
+void TIM6_DAC_IRQHandler(void)
+{
+	HAL_TIM_IRQHandler(&htim6);
+}
 /******************************************************************************/
 /* STM32F4xx Peripheral Interrupt Handlers                                    */
 /* Add here the Interrupt Handlers for the used peripherals.                  */

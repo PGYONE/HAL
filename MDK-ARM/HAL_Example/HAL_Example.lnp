@@ -20,6 +20,7 @@
 "hal_example\stm32f4xx_it.o"
 "hal_example\usart.o"
 "hal_example\dma.o"
+"hal_example\tim.o"
 "hal_example\system_stm32f4xx.o"
 "hal_example\startup_stm32f407xx.o"
 --library_type=microlib --strict --scatter "HAL_Example\HAL_Example.sct"
