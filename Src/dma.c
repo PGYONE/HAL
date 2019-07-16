@@ -49,7 +49,6 @@
 
 /* USER CODE BEGIN 1 */
 extern DMA_HandleTypeDef hdma_usart1_rx;
-extern DMA_HandleTypeDef hdma_usart1_tx;
 /* USER CODE END 1 */
 
 /** 
@@ -64,9 +63,15 @@ void MX_DMA_Init(void)
   /* DMA2_Stream2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
-  /* DMA2_Stream7_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
+
+	
+	
+	__HAL_RCC_DMA2_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA2_Stream0_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
 
 }
 
@@ -76,13 +81,7 @@ void DMA2_Stream2_IRQHandler(void)
   HAL_DMA_IRQHandler(&hdma_usart1_rx);
 }
 
-/**
-* @brief This function handles DMA2 stream7 global interrupt.
-*/
-void DMA2_Stream7_IRQHandler(void)
-{
-  HAL_DMA_IRQHandler(&hdma_usart1_tx);
-}
+
 /* USER CODE BEGIN 2 */
 
 /* USER CODE END 2 */

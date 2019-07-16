@@ -44,6 +44,8 @@
 #include "usart.h"
 #include "dma.h"
 #include "tim.h"
+#include "pwm.h"
+#include "adc.h"
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -55,6 +57,10 @@
 
 /* USER CODE END PV */
 extern TIM_HandleTypeDef htim6;
+extern TIM_HandleTypeDef htim9;
+uint32_t adc;
+extern ADC_HandleTypeDef hadc1;
+extern UART_HandleTypeDef huart1;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
@@ -64,9 +70,17 @@ void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+void _Error_Handler(char * file, int line)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  while(1) 
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */ 
+}
 /* USER CODE END 0 */
-
+char da[4];
 int main(void)
 {
 
@@ -95,27 +109,22 @@ int main(void)
   MX_DMA_Init();
   /* USER CODE BEGIN 2 */
   MX_USART1_UART_Init();
-	MX_TIM6_Init();
-  HAL_TIM_Base_Start_IT(&htim6);
+  HAL_UART_Transmit(&huart1, "abc\r\n", 4, 100);
+	MX_ADC1_Init();
+	HAL_ADC_Start_DMA(&hadc1, &adc, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		if(recv_end_flag == 1)   //接收完成标志
-    {
-        //if(rx_len==6)
-				{
-			HAL_UART_Transmit(&huart1,aRxBuffer, rx_len,200);
-					rx_len = 0;//清除计数
-        recv_end_flag = 0;//清除接收结束标志位
-			  HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_9);
-        memset(aRxBuffer,0,sizeof(aRxBuffer));
-				}
-        
-    }   
-   
+		  HAL_Delay(500);
+		da[0]=adc%10000/1000+'0';
+		da[1]=adc%1000/100+'0';
+		da[2]=adc%100/10+'0';
+		da[3]=adc%10/1+'0';
+		
+   HAL_UART_Transmit(&huart1, da, 4, 1000);
   }
   /* USER CODE END 3 */
 }
@@ -146,7 +155,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    _Error_Handler(__FILE__, __LINE__);
+   
   }
 
     /**Initializes the CPU, AHB and APB busses clocks 
@@ -160,7 +169,7 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
   {
-    _Error_Handler(__FILE__, __LINE__);
+    
   }
 
     /**Configure the Systick interrupt time 
@@ -179,20 +188,7 @@ void SystemClock_Config(void)
 
 /* USER CODE END 4 */
 
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  None
-  * @retval None
-  */
-void _Error_Handler(char * file, int line)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  while(1) 
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */ 
-}
+
 
 #ifdef USE_FULL_ASSERT
 

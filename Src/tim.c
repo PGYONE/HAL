@@ -57,14 +57,14 @@ void MX_TIM6_Init(void)
   htim6.Init.Period = 1000-1;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
-    _Error_Handler(__FILE__, __LINE__);
+    
   }
 
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
   {
-    _Error_Handler(__FILE__, __LINE__);
+   
   }
 
 }
@@ -110,21 +110,27 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 
 /* USER CODE BEGIN 1 */
 
-unsigned int i=0;
+unsigned int i=0,j=0;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* Prevent unused argument(s) compilation warning */
- i++;
-	if(i>1000)
+	if(htim->Instance==TIM6)
 	{
-	 HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_9);
-		i=0;
+		if(i++>1000)
+		{
+		 HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_9);
+			i=0;
+		}
 	}
-
-	
-  /* NOTE : This function Should not be modified, when the callback is needed,
-            the __HAL_TIM_PeriodElapsedCallback could be implemented in the user file
-   */
+  else if(htim->Instance==TIM9)
+	{
+		if(j++>200)
+		{
+			//htim->Instance->CCR1=0;
+			//htim->Instance->CCR2=255;
+			j=0;
+		}
+	}
 }
 /* USER CODE END 1 */
 
